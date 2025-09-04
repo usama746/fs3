@@ -1,0 +1,1235 @@
+/*FAYYAZ & SONS - Inventory Manager CSS*/
+
+/* --- CSS Variables --- */
+:root {
+   --background: #ffffff;
+   --foreground: #0f172a;
+   --card: #ffffff;
+   --card-foreground: #0f172a;
+   --popover: #ffffff;
+   --popover-foreground: #0f172a;
+   --primary: #0f172a;
+   --primary-foreground: #f8fafc;
+   --secondary: #f1f5f9;
+   --secondary-foreground: #0f172a;
+   --muted: #f8fafc;
+   --muted-foreground: #64748b;
+   --accent: #f1f5f9;
+   --accent-foreground: #0f172a;
+   --destructive: #ef4444;
+   --destructive-foreground: #f8fafc;
+   --border: #e2e8f0;
+   --input: #e2e8f0;
+   --ring: #0f172a;
+   --radius: 6px;
+   --success: #22c55e;
+   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* --- Reset & Base --- */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+html {
+   height: 100%;
+   overflow-y: auto;
+}
+
+body {
+   height: 100%;
+   overflow-y: auto;
+   font-family: "Inter", system-ui, -apple-system, sans-serif;
+   background: var(--background);
+   color: var(--foreground);
+   line-height: 1.5;
+   font-size: 14px;
+   -webkit-overflow-scrolling: touch;
+   min-height: 100vh;
+   scroll-behavior: smooth;
+}
+
+.container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 24px;
+   min-height: 100vh;
+   overflow-y: auto;
+}
+
+/* --- Header --- */
+.header {
+   gap: 16px;
+   margin-bottom: 24px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   min-height: 80px;
+   padding: 0 60px;
+}
+
+.mode-indicator {
+   display: none;
+}
+
+.mode-badge {
+   background: var(--accent);
+   color: var(--accent-foreground);
+   padding: 4px 12px;
+   border-radius: 16px;
+   font-size: 12px;
+   font-weight: 500;
+   opacity: 0.9;
+   display: inline-block;
+   box-shadow: var(--shadow-sm);
+}
+
+/* Back Button */
+.back-btn {
+   position: absolute;
+   left: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   height: 80px;
+   padding: 0 16px;
+   border-radius: var(--radius);
+   background: transparent;
+   color: var(--foreground);
+   font-weight: 500;
+   font-size: 14px;
+   border: none;
+   cursor: pointer;
+   transition: all 0.15s ease;
+   text-decoration: none;
+   outline: none;
+   z-index: 10;
+   min-width: 60px;
+}
+
+.back-btn:hover {
+   background: var(--secondary);
+   color: var(--secondary-foreground);
+}
+
+.back-btn:focus-visible {
+   outline: 2px solid var(--ring);
+   outline-offset: 2px;
+}
+
+.back-btn:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+   pointer-events: none;
+}
+
+.back-icon {
+   width: 32px;
+   height: 32px;
+   flex-shrink: 0;
+}
+
+/* Main Title */
+.main-title {
+   font-size: 28px;
+   font-weight: 700;
+   color: var(--foreground);
+   text-align: left;
+   position: absolute;
+   width: calc(100% - 120px);
+   max-width: calc(100% - 120px);
+   z-index: 1;
+   margin: 0;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   left: 60px;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.main-title.category-title {
+   font-size: 28px;
+   font-weight: 700;
+   text-align: center;
+   left: 50%;
+   transform: translateX(-50%) translateY(-50%);
+   width: calc(100% - 120px);
+   max-width: calc(100% - 120px);
+}
+
+/* --- Mobile Menu --- */
+.burger-menu-btn {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   width: 40px;
+   height: 40px;
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   padding: 8px;
+   border-radius: var(--radius);
+   flex-shrink: 0;
+   position: absolute;
+   right: 0;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 10;
+}
+
+.burger-menu-btn:hover {
+   background: var(--secondary);
+}
+
+.burger-line {
+   width: 24px;
+   height: 2px;
+   background: var(--foreground);
+   border-radius: 1px;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 1000;
+   display: flex;
+   align-items: flex-start;
+   justify-content: flex-end;
+   padding: 16px;
+}
+
+.mobile-menu {
+   background: var(--card);
+   border-radius: var(--radius);
+   box-shadow: var(--shadow-lg);
+   width: 280px;
+   max-width: 90vw;
+   max-height: 80vh;
+   overflow: hidden;
+}
+
+.mobile-menu-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 16px;
+   border-bottom: 1px solid var(--border);
+   background: var(--muted);
+}
+
+.mobile-menu-header h3 {
+   font-size: 18px;
+   font-weight: 600;
+   margin: 0;
+}
+
+.mobile-menu-close {
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   padding: 4px;
+   border-radius: var(--radius);
+   color: var(--foreground);
+}
+
+.mobile-menu-close:hover {
+   background: var(--secondary);
+}
+
+.mobile-menu-content {
+   padding: 16px;
+}
+
+.mobile-menu-item {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   width: 100%;
+   padding: 12px 16px;
+   background: transparent;
+   border: none;
+   border-radius: var(--radius);
+   cursor: pointer;
+   font-size: 16px;
+   color: var(--foreground);
+   text-align: left;
+}
+
+.mobile-menu-item:hover {
+   background: var(--secondary);
+}
+
+.mobile-menu-item span:first-child {
+   font-size: 20px;
+   width: 24px;
+   text-align: center;
+}
+
+/* --- Main Content --- */
+.main-content {
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
+   width: 100%;
+   visibility: visible;
+   opacity: 1;
+   min-height: 400px;
+   height: auto;
+   overflow-y: auto;
+   padding-bottom: 100px;
+   /* Add padding to ensure add category button is visible */
+}
+
+/* --- Card Components --- */
+.card {
+   background: var(--card);
+   border: 1px solid var(--border);
+   border-radius: var(--radius);
+   box-shadow: var(--shadow);
+   overflow: visible;
+   margin-bottom: 16px;
+}
+
+/* Add category card - make it sticky */
+.card:first-child {
+   position: sticky;
+   top: 0;
+   z-index: 10;
+   background: var(--card);
+   border-bottom: 2px solid var(--border);
+   margin-bottom: 8px;
+}
+
+.card-header {
+   background: var(--muted);
+   padding: 16px;
+   border-bottom: 1px solid var(--border);
+   font-weight: 600;
+   border: none;
+}
+
+.card-content {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   width: 100%;
+   padding: 16px;
+   margin: 0;
+}
+
+.card-content.text-center {
+   flex-direction: column;
+   align-items: center;
+   gap: 8px;
+   padding: 24px;
+}
+
+/* --- Button Components --- */
+.btn,
+.icon-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   height: 40px;
+   border-radius: var(--radius);
+   font-weight: 500;
+   font-size: 14px;
+   border: none;
+   cursor: pointer;
+   text-decoration: none;
+   outline: none;
+   position: relative;
+   overflow: hidden;
+}
+
+.btn {
+   padding: 0 16px;
+   white-space: nowrap;
+   box-shadow: var(--shadow-sm);
+   width: auto;
+}
+
+.btn:hover {
+   opacity: 0.9;
+}
+
+.btn:focus-visible,
+.icon-btn:focus-visible {
+   outline: 2px solid var(--ring);
+   outline-offset: 2px;
+}
+
+.btn:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+   pointer-events: none;
+}
+
+/* Button Variants */
+.btn-primary {
+   background: var(--primary);
+   color: var(--primary-foreground);
+}
+
+.btn-secondary {
+   background: var(--secondary);
+   color: var(--secondary-foreground);
+}
+
+/* General destructive buttons - red background with white text */
+.btn-destructive {
+   background: var(--destructive) !important;
+   color: #ffffff !important;
+   font-weight: 600;
+}
+
+/* For save/edit icons - green color only */
+.btn-success-icon {
+   color: var(--success) !important;
+   background: transparent !important;
+}
+
+/* For save/edit buttons - green background with white text */
+.btn-success {
+   background: var(--success) !important;
+   color: #ffffff !important;
+   font-weight: 600;
+}
+
+/* For cancel icons - red color only */
+.btn-cancel-icon {
+   color: var(--destructive) !important;
+   background: transparent !important;
+}
+
+/* For cancel buttons - gray background with dark text */
+.btn-cancel {
+   background: var(--muted) !important;
+   color: var(--muted-foreground) !important;
+   font-weight: 500;
+}
+
+/* For delete icons - red color only */
+.btn-destructive-icon {
+   color: var(--destructive) !important;
+   background: transparent !important;
+}
+
+/* For modal confirmation buttons - red background with white text */
+.btn-confirm-destructive {
+   background: var(--destructive) !important;
+   color: #ffffff !important;
+   font-weight: 600;
+}
+
+.icon-btn {
+   width: 32px;
+   background: transparent;
+   color: var(--foreground);
+}
+
+.icon-btn:hover {
+   color: var(--secondary-foreground);
+}
+
+.icon-btn svg {
+   position: relative;
+   z-index: 1;
+   width: 16px;
+   height: 16px;
+   pointer-events: none;
+   flex-shrink: 0;
+}
+
+.icon-svg {
+   width: 1.25em;
+   height: 1.25em;
+   vertical-align: middle;
+   stroke: currentColor;
+   fill: none;
+}
+
+/* --- Input Components --- */
+input,
+select {
+   height: 40px;
+   padding: 0 12px;
+   border-radius: var(--radius);
+   border: 1px solid var(--input);
+   background: var(--background);
+   color: var(--foreground);
+   font-size: 14px;
+   font-weight: 400;
+   outline: none;
+   width: 100%;
+   box-shadow: var(--shadow-sm);
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+input:focus,
+select:focus {
+   border-color: var(--ring);
+   box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1);
+}
+
+input::placeholder {
+   color: var(--muted-foreground);
+}
+
+/* --- Table Components --- */
+.table-container {
+   padding: 16px;
+   padding-right: 24px;
+   margin-top: 16px;
+   position: relative;
+}
+
+/* Ensure table container is properly scrollable */
+.table-container .table-wrapper {
+   scrollbar-width: thin;
+   scrollbar-color: var(--border) transparent;
+}
+
+.table-container .table-wrapper::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
+}
+
+.table-container .table-wrapper::-webkit-scrollbar-track {
+   background: transparent;
+}
+
+.table-container .table-wrapper::-webkit-scrollbar-thumb {
+   background: var(--border);
+   border-radius: 4px;
+}
+
+.table-container .table-wrapper::-webkit-scrollbar-thumb:hover {
+   background: var(--muted-foreground);
+}
+
+.table-wrapper {
+   width: 100%;
+   max-width: 100%;
+   box-sizing: border-box;
+   border-radius: var(--radius);
+   box-shadow: var(--shadow-sm);
+   overflow-x: auto;
+   overflow-y: auto;
+   max-height: auto;
+   min-height: auto;
+   border: 1px solid var(--border);
+   position: relative;
+}
+
+.table-wrapper::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 20px;
+   background: linear-gradient(transparent, var(--card));
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity 0.3s ease;
+}
+
+.table-wrapper.has-overflow::after {
+   opacity: 1;
+}
+
+table {
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 0;
+   font-size: 14px;
+   background: var(--card);
+   border-radius: var(--radius);
+   overflow: hidden;
+   box-shadow: var(--shadow-sm);
+}
+
+thead {
+   border-bottom: none;
+   background: var(--muted);
+}
+
+th {
+   height: 48px;
+   padding: 16px 12px;
+   text-align: center;
+   font-weight: 600;
+   color: var(--foreground);
+   vertical-align: middle;
+   font-size: 13px;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   border-bottom: 1px solid var(--border);
+}
+
+td {
+   padding: 16px 12px;
+   text-align: center;
+   vertical-align: middle;
+   border-bottom: 1px solid var(--border);
+   font-size: 14px;
+}
+
+tr {
+   border-bottom: none;
+   transition: background-color 0.15s ease;
+}
+
+tr:last-child td {
+   border-bottom: none;
+}
+
+tr:nth-child(even) {
+   background: var(--muted);
+}
+
+/* Table input styling */
+table input {
+   background: var(--background);
+   border: 1px solid var(--border);
+}
+
+table input:focus {
+   border-color: var(--ring);
+   box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.1);
+   outline: none;
+}
+
+/* Color column styling */
+td:first-child {
+   text-align: left;
+   font-weight: 500;
+   color: var(--foreground);
+}
+
+/* Price and Qty columns */
+td:nth-child(2),
+td:nth-child(3) {
+   font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+      "Courier New", monospace;
+   font-weight: 500;
+   color: var(--foreground);
+}
+
+/* Variant/Color column specific styling */
+.variant-color-header {
+   text-align: left !important;
+   padding: 8px 8px 8px 8px !important;
+}
+
+.variant-color-cell {
+   text-align: left !important;
+   padding: 8px 8px 8px 8px !important;
+   font-weight: 500;
+}
+
+.variant-color-input {
+   display: inline-block;
+   min-width: 80px;
+   max-width: 100px;
+   border: 1px solid var(--border);
+   border-radius: 4px;
+   padding: 4px 10px;
+   font-size: 14px;
+}
+
+/* Quantity column styling */
+.quantity-cell {
+   text-align: center !important;
+   font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+      "Courier New", monospace;
+   font-weight: 500;
+}
+
+.quantity-input {
+   min-width: 40px;
+   max-width: 60px;
+   border: 1px solid var(--border);
+   border-radius: 4px;
+   padding: 4px 10px;
+   font-size: 14px;
+   text-align: center;
+}
+
+/* Price column styling */
+.price-cell {
+   text-align: center !important;
+   font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+      "Courier New", monospace;
+   font-weight: 500;
+}
+
+.price-input {
+   min-width: 80px;
+   max-width: 100px;
+   border: 1px solid var(--border);
+   border-radius: 4px;
+   padding: 4px 10px;
+   font-size: 14px;
+   text-align: center;
+}
+
+/* Actions column styling */
+.actions-cell {
+   text-align: center !important;
+   width: 90px;
+}
+
+/* Item Header */
+.item-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 16px;
+   gap: 24px;
+}
+
+.item-name {
+   flex-grow: 1;
+   font-size: 18px;
+   font-weight: 900;
+   color: var(--foreground);
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.category-name {
+   flex-grow: 1;
+   font-size: 20px;
+   font-weight: 600;
+   color: var(--primary);
+   letter-spacing: 0.5px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.item-actions {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   flex-shrink: 0;
+}
+
+/* Center align item-header and item-name when not signed in */
+.item-header.center {
+   justify-content: center !important;
+   text-align: center;
+}
+
+.item-header.center .item-name {
+   text-align: center;
+   margin: 0 auto;
+}
+
+/* Item header with toggle button */
+.item-header-with-toggle {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+}
+
+.item-name-with-padding {
+   text-align: left;
+   flex: 1;
+   padding: 12px 16px;
+}
+
+.toggle-button-container {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.price-toggle-btn {
+   background: transparent;
+   border: none;
+   cursor: pointer;
+   font-size: 18px;
+   color: var(--muted-foreground);
+   padding: 12px 16px;
+   border-radius: 6px;
+   transition: all 0.15s ease;
+}
+
+.price-toggle-btn:hover {
+   background: var(--secondary);
+   color: var(--secondary-foreground);
+}
+
+/* Category name with padding */
+.category-name-with-padding {
+   cursor: pointer;
+   padding: 12px 16px;
+   flex: 1;
+   min-width: 0;
+}
+
+/* Action button containers */
+.action-button-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+/* Add variant row styling */
+.add-variant-row-container {
+   text-align: center;
+   margin: 4px 8px;
+   vertical-align: middle;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.add-variant-btn {
+   background: var(--primary) !important;
+   color: var(--primary-foreground) !important;
+   border: none;
+}
+
+.add-variant-btn:hover {
+   background: var(--secondary) !important;
+   color: var(--secondary-foreground) !important;
+}
+
+.add-variant-btn-light {
+   font-weight: 400;
+}
+
+/* Categories list */
+.categories-list {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   margin-top: 16px;
+   /* Add space after add category card */
+}
+
+/* Ensure add category section is always visible */
+.card-content:has(input[placeholder*="Category"]) {
+   position: sticky;
+   top: 0;
+   z-index: 10;
+   background: var(--card);
+   border-bottom: 1px solid var(--border);
+   margin-bottom: 8px;
+}
+
+/* Fallback for browsers that don't support :has() */
+.add-category-card {
+   position: sticky;
+   top: 0;
+   z-index: 10;
+   background: var(--card);
+   border-bottom: 1px solid var(--border);
+   margin-bottom: 8px;
+}
+
+/* --- Modal & Toast --- */
+.modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 1000;
+}
+
+.modal {
+   background: var(--card);
+   border-radius: var(--radius);
+   padding: 24px;
+   max-width: 400px;
+   width: 90%;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-title {
+   font-size: 20px;
+   font-weight: 600;
+   margin-bottom: 8px;
+}
+
+.modal-message {
+   color: var(--muted-foreground);
+   margin-bottom: 24px;
+}
+
+.modal-actions {
+   display: flex;
+   gap: 8px;
+   justify-content: flex-end;
+}
+
+.toast {
+   position: fixed;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   background: var(--card);
+   color: var(--card-foreground);
+   padding: 16px 24px;
+   border-radius: var(--radius);
+   font-size: 14px;
+   font-weight: 500;
+   z-index: 1001;
+   box-shadow: var(--shadow-lg);
+   border: 1px solid var(--border);
+   max-width: 90vw;
+   text-align: center;
+}
+
+.toast.success {
+   background: rgba(34, 197, 94, 0.1);
+   color: var(--success);
+   border-color: rgba(34, 197, 94, 0.2);
+}
+
+/* --- Utility Classes --- */
+.hidden {
+   display: none !important;
+}
+
+.text-center {
+   text-align: center;
+}
+
+.text-muted {
+   color: var(--muted-foreground);
+}
+
+.w-100 {
+   width: 100% !important;
+}
+
+.btn.full-width,
+.btn.w-100 {
+   width: 100% !important;
+   max-width: 100% !important;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+/* --- Special Components --- */
+.add-variant-row {
+   margin: 4px 8px !important;
+}
+
+.add-variant-row .btn {
+   height: 48px;
+   font-size: 16px;
+   padding: 0 10px;
+}
+
+.editing-input {
+   padding: 6px 10px;
+   border: 2px solid var(--ring);
+   border-radius: 6px;
+   font-size: 1rem;
+   transition: all 0.2s ease-in-out;
+   background: var(--input);
+   color: var(--foreground);
+}
+
+.item-editing {
+   background: var(--muted);
+   transition: background 0.2s ease-in-out;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 640px) {
+   .container {
+      padding: 16px;
+   }
+
+   .header {
+      padding: 0 8px;
+      min-height: 60px;
+   }
+
+   .main-content {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 100% !important;
+      min-height: 300px;
+      padding-bottom: 120px;
+      /* Ensure add category button is visible on mobile */
+   }
+
+   .main-title {
+      font-size: 24px;
+      max-width: calc(100% - 100px);
+   }
+
+   .main-title.category-title {
+      font-size: 18px;
+   }
+
+   .back-btn {
+      height: 60px;
+      padding: 0 12px;
+   }
+
+   .back-icon {
+      width: 32px;
+      height: 32px;
+   }
+
+   .card {
+      border-radius: 4px;
+   }
+
+   .item-header {
+      padding: 12px;
+   }
+
+   .item-name {
+      font-size: 24px;
+   }
+
+   .card-content {
+      flex-direction: column;
+      align-items: stretch;
+   }
+
+   .card-content > * {
+      margin-bottom: 8px;
+   }
+
+   .card-content > *:last-child {
+      margin-bottom: 0;
+   }
+
+   .table-container {
+      padding: 8px;
+      margin-top: 8px;
+   }
+
+
+
+   table {
+      font-size: 12px;
+   }
+
+   th,
+   td {
+      padding: 8px 4px;
+   }
+
+   .card-content,
+   .item-header,
+   .table-wrapper,
+   .table-wrapper td,
+   .table-wrapper input,
+   .btn,
+   .add-variant-btn {
+      font-size: 18px !important;
+   }
+
+   .add-variant-btn i,
+   .icon-btn i {
+      font-size: 1.4em !important;
+   }
+
+   /* Mobile-specific input improvements */
+   input,
+   select {
+      font-size: 16px;
+      /* Prevents zoom on iOS */
+      height: 44px;
+      /* Larger touch target */
+      padding: 0 16px;
+      -webkit-tap-highlight-color: transparent;
+   }
+
+   .btn {
+      height: 44px;
+      /* Larger touch target */
+      font-size: 16px;
+      padding: 0 20px;
+      min-width: 80px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+   }
+
+   .icon-btn {
+      width: 44px;
+      /* Larger touch target */
+      height: 44px;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+   }
+
+   .card-content {
+      gap: 12px;
+      /* More space between input and button */
+   }
+
+   /* Improve touch targets for all interactive elements */
+   button {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      min-height: 44px;
+   }
+
+   /* Ensure proper touch handling */
+   * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+   }
+
+   /* Allow text selection in inputs */
+   input,
+   textarea {
+      -webkit-user-select: text;
+      -khtml-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+   }
+}
+
+@media (min-width: 640px) {
+   .main-title {
+      font-size: 24px;
+   }
+
+   .main-title.category-title {
+      font-size: 24px;
+   }
+}
+
+/* --- Dark Mode --- */
+.dark-mode {
+   --background: #0f172a;
+   --foreground: #f8fafc;
+   --card: #1e293b;
+   --card-foreground: #f1f5f9;
+   --muted: #334155;
+   --muted-foreground: #cbd5e1;
+   --border: #475569;
+   --input: #475569;
+   --ring: #f8fafc;
+   --primary: #f8fafc;
+   --primary-foreground: #0f172a;
+   --secondary: #1e293b;
+   --secondary-foreground: #f8fafc;
+   --accent: #334155;
+   --accent-foreground: #f1f5f9;
+}
+
+/* --- Standalone Mode Styles --- */
+
+/* Standalone mode optimizations */
+.standalone-mode {
+   /* Allow scrolling in standalone mode */
+   min-height: 100vh;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+.standalone-mode .container {
+   min-height: 100vh;
+   padding-top: env(safe-area-inset-top);
+   padding-bottom: env(safe-area-inset-bottom);
+   padding-left: env(safe-area-inset-left);
+   padding-right: env(safe-area-inset-right);
+   overflow-y: auto;
+}
+
+.standalone-mode .header {
+   padding-top: env(safe-area-inset-top);
+   background: var(--background);
+   border-bottom: 1px solid var(--border);
+   position: sticky;
+   top: 0;
+   z-index: 100;
+}
+
+.standalone-mode .main-content {
+   min-height: calc(100vh - 80px - env(safe-area-inset-top));
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Android standalone specific styles */
+.android-standalone {
+   /* Allow normal scrolling on Android */
+   -webkit-overflow-scrolling: touch;
+}
+
+.android-standalone .main-content {
+   /* Smooth scrolling on Android */
+   scroll-behavior: smooth;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+   .standalone-mode .container {
+      padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom) 16px;
+      overflow-y: auto;
+   }
+
+   .standalone-mode .header {
+      padding: env(safe-area-inset-top) 16px 16px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+   }
+
+   .standalone-mode .main-content {
+      padding-bottom: 20px;
+      overflow-y: auto;
+   }
+
+   .table-wrapper {
+      max-height: none;
+      /* Auto height for mobile - no vertical scrolling */
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+   }
+
+   .table-container {
+      padding: 8px;
+      margin-top: 8px;
+   }
+}

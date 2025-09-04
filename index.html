@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover"
+      />
+      <title>F&S - Inventory Manager</title>
+
+      <!-- Performance: DNS Prefetch / Preconnect -->
+      <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+      <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+      <link rel="dns-prefetch" href="//kgghhqeascvwamueftcr.supabase.co" />
+      <link
+         rel="preconnect"
+         href="https://kgghhqeascvwamueftcr.supabase.co"
+         crossorigin
+      />
+      <link rel="dns-prefetch" href="//kit.fontawesome.com" />
+      <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin />
+      <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin />
+
+      <!-- Favicon -->
+      <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+      <link rel="shortcut icon" href="./icon.svg" />
+
+      <script
+         src="https://kit.fontawesome.com/48bbc1dc8c.js"
+         crossorigin="anonymous"
+         defer
+      ></script>
+      <link rel="stylesheet" href="styles.css" />
+
+      <meta name="theme-color" content="#F38157" />
+
+      <!-- PWA Meta Tags -->
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="application-name" content="F&S Inventory Manager" />
+      <meta name="msapplication-tap-highlight" content="no" />
+      <meta name="format-detection" content="telephone=no" />
+
+      <!-- PWA Manifest -->
+      <link rel="manifest" href="manifest.json" />
+
+
+   </head>
+
+   <body>
+
+
+      <!-- SVG Sprite for custom icons -->
+      <svg style="display: none">
+         <!-- icon-edit -->
+         <symbol
+            id="icon-edit"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+         >
+            <path
+               d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+            ></path>
+            <path d="m15 5 4 4"></path>
+         </symbol>
+         <!-- icon-delete -->
+         <symbol
+            id="icon-delete"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+         >
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            <line x1="10" x2="10" y1="11" y2="17"></line>
+            <line x1="14" x2="14" y1="11" y2="17"></line>
+         </symbol>
+         <!-- icon-save -->
+         <symbol
+            id="icon-save"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+         >
+            <path d="M20 6 9 17l-5-5"></path>
+         </symbol>
+         <!-- icon-cancel -->
+         <symbol
+            id="icon-cancel"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+         >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+         </symbol>
+      </svg>
+
+      <div class="container">
+         <!-- Header -->
+         <header class="header">
+            <button id="backBtn" class="back-btn hidden" aria-label="Go back">
+               <svg
+                  class="back-icon"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+               >
+                  <polyline points="15 18 9 12 15 6"></polyline>
+               </svg>
+            </button>
+            <h1 id="mainTitle" class="main-title"></h1>
+
+            <!-- Burger Menu (Show on all screen sizes) -->
+            <button
+               id="burgerMenuBtn"
+               class="burger-menu-btn"
+               aria-label="Open menu"
+            >
+               <span class="burger-line"></span>
+               <span class="burger-line"></span>
+               <span class="burger-line"></span>
+            </button>
+
+            <!-- Mobile Menu Overlay -->
+            <div id="mobileMenuOverlay" class="mobile-menu-overlay hidden">
+               <div class="mobile-menu">
+                  <div class="mobile-menu-header">
+                     <h3>Menu</h3>
+                     <button
+                        id="mobileMenuClose"
+                        class="mobile-menu-close"
+                        aria-label="Close menu"
+                     >
+                        <svg
+                           width="24"
+                           height="24"
+                           viewBox="0 0 24 24"
+                           fill="none"
+                           stroke="currentColor"
+                           stroke-width="2"
+                        >
+                           <path d="M18 6 6 18"></path>
+                           <path d="m6 6 12 12"></path>
+                        </svg>
+                     </button>
+                  </div>
+                  <div class="mobile-menu-content">
+                     <button id="mobileThemeToggle" class="mobile-menu-item">
+                        <span>🌓</span>
+                        <span>Toggle Dark Mode</span>
+                     </button>
+                     <button id="mobileRefreshBtn" class="mobile-menu-item">
+                        <span>🔄</span>
+                        <span>Refresh App</span>
+                     </button>
+                     <button id="mobileAuthBtn" class="mobile-menu-item">
+                        <span>🔐</span>
+                        <span>Sign In</span>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </header>
+
+         <main id="mainContent" class="main-content">
+            <!-- Dynamic Content -->
+         </main>
+      </div>
+
+      <!-- Modal Overlay -->
+      <div id="modalOverlay" class="modal-overlay hidden">
+         <div class="modal">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalMessage" class="modal-message"></p>
+            <div class="modal-actions">
+               <button id="modalCancel" class="btn btn-secondary">
+                  Cancel
+               </button>
+               <button id="modalConfirm" class="btn btn-confirm-destructive">
+                  Confirm
+               </button>
+            </div>
+         </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="toast hidden"></div>
+
+      <!-- Sign In Modal -->
+      <div id="signinModal" class="modal-overlay hidden">
+         <div class="modal">
+            <h2 class="modal-title">Admin Sign In</h2>
+            <div class="modal-message">
+               <input
+                  id="signinUsername"
+                  type="text"
+                  placeholder="Username"
+                  style="margin-bottom: 8px; width: 100%"
+                  autocomplete="username"
+                  required
+               />
+               <div
+                  class="password-container"
+                  style="position: relative; margin-bottom: 16px"
+               >
+                  <input
+                     id="signinPassword"
+                     type="password"
+                     placeholder="Password"
+                     style="width: 100%; padding-right: 40px"
+                     autocomplete="current-password"
+                     required
+                  />
+                  <button
+                     type="button"
+                     id="passwordToggle"
+                     class="password-toggle"
+                     style="
+                        position: absolute;
+                        right: 8px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 16px;
+                     "
+                  >
+                     👁️
+                  </button>
+               </div>
+            </div>
+            <div class="modal-actions">
+               <button id="signinCancel" class="btn btn-secondary">
+                  Cancel
+               </button>
+               <button id="signinSubmit" class="btn btn-primary">
+                  Sign In
+               </button>
+            </div>
+         </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+
+      <script src="app.js?v=2" defer></script>
+   </body>
+</html>
